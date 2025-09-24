@@ -1,0 +1,96 @@
+{
+  "users": [
+    {
+      "username": "super",
+      "password": "123",
+      "email": "super@frametry.com",
+      "role": "superAdmin"
+    },
+    {
+      "username": "group",
+      "password": "123",
+      "email": "group@frametry.com",
+      "role": "groupAdmin"
+    },
+    {
+      "username": "user",
+      "password": "123",
+      "email": "user@frametry.com",
+      "role": "user"
+    },
+    {
+      "username": "anna",
+      "password": "123",
+      "email": "anna@frametry.com",
+      "role": "user"
+    }
+  ],
+  "groups": [
+    {
+      "id": "g1",
+      "name": "General",
+      "ownerId": "super",
+      "adminIds": [
+        "super",
+        "group"
+      ],
+      "memberIds": [
+        "super",
+        "group",
+        "user",
+        "anna"
+      ],
+      "channelIds": [
+        "c1",
+        "c2"
+      ]
+    },
+    {
+      "id": "g9szeeq",
+      "name": "djf",
+      "ownerId": "super",
+      "adminIds": [
+        "super",
+        "super"
+      ],
+      "memberIds": [
+        "super"
+      ],
+      "channelIds": [
+        "ckynd1m"
+      ]
+    }
+  ],
+  "channels": [
+    {
+      "id": "c1",
+      "groupId": "g1",
+      "name": "general-chat",
+      "memberIds": [
+        "super",
+        "group",
+        "user",
+        "anna"
+      ]
+    },
+    {
+      "id": "c2",
+      "groupId": "g1",
+      "name": "announcements",
+      "memberIds": [
+        "super",
+        "group",
+        "user",
+        "anna"
+      ]
+    },
+    {
+      "id": "ckynd1m",
+      "groupId": "g9szeeq",
+      "name": "girlss",
+      "memberIds": [
+        "super"
+      ]
+    }
+  ]
+}

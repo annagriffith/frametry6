@@ -1,0 +1,54 @@
+<!--
+This file is the profile page template for the Frametry6 app.
+It displays the user's info, their groups, and channels, and lets group/super admins create new channels.
+Use this to answer questions about how the profile page works in the project.
+-->
+<div class="container py-4">
+	<h1 class="mb-3">Profile</h1>
+	<div *ngIf="user" class="mb-4">
+		<div class="card p-3 mb-3">
+			<p><strong>Username:</strong> {{ user.username }}</p>
+			<p><strong>Email:</strong> {{ user.email }}</p>
+			<p><strong>Role:</strong> {{ user.role }}</p>
+		</div>
+		<!-- Create Group Form for Group Admins and Super Admins -->
+		<div *ngIf="user.role === 'groupAdmin' || user.role === 'superAdmin'" class="mb-4">
+			<h3>Create Group</h3>
+			<form (ngSubmit)="createGroup()" #groupForm="ngForm" class="row g-2">
+				<div class="col-auto">
+					<input type="text" [(ngModel)]="newGroupName" name="newGroupName" class="form-control" placeholder="New group name" required>
+				</div>
+				<div class="col-auto">
+					<button type="submit" class="btn btn-primary">Create Group</button>
+				</div>
+			</form>
+			<div *ngIf="groupError" class="text-danger mt-1">{{ groupError }}</div>
+			<div *ngIf="groupSuccess" class="text-success mt-1">{{ groupSuccess }}</div>
+		</div>
+		<h3 class="mt-4">Groups</h3>
+		<ul class="list-group">
+			<li *ngFor="let group of groups" class="list-group-item mb-3">
+				<strong>{{ group.name }}</strong>
+				<ul>
+					<li *ngFor="let channel of channelsByGroup[group.id]">
+						<a [routerLink]="['/chat']" [queryParams]="{ channel: channel.id }">
+							{{ channel.name }}
+						</a>
+					</li>
+				</ul>
+				<!-- Create Channel Form for Group Admins and Super Admins -->
+				<div *ngIf="user.role === 'groupAdmin' || user.role === 'superAdmin'" class="mt-3 mb-3">
+					<form (ngSubmit)="createChannel(group.id)" #channelForm="ngForm" class="row g-2">
+						<div class="col-auto">
+							<input type="text" [(ngModel)]="newChannelName" name="newChannelName" class="form-control" placeholder="New channel name" required>
+						</div>
+						<div class="col-auto">
+							<button type="submit" class="btn btn-success">Create Channel</button>
+						</div>
+					</form>
+					<div *ngIf="channelError" class="text-danger mt-1">{{ channelError }}</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>

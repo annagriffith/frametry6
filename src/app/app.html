@@ -1,0 +1,21 @@
+<!--
+This file defines the main layout and navigation bar for the Frametry6 chat app.
+It includes links to all main pages and displays the current view using Angular's router-outlet.
+Use this to answer questions about the overall app structure and navigation.
+-->
+<nav class="navbar bg-light px-3">
+  <span class="navbar-brand mb-0 h1">Group Chat</span>
+  <div class="ms-auto">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="me-3">Home</a>
+    <a routerLink="/login" routerLinkActive="active" class="me-3">Login</a>
+  <a routerLink="/profile" routerLinkActive="active" class="me-3">Profile</a>
+  <a routerLink="/chat" routerLinkActive="active" class="me-3">Chat</a>
+  <a *ngIf="currentUser" routerLink="/admin" routerLinkActive="active" class="me-3">Admin</a>
+  <a *ngIf="currentUser" (click)="logout()" class="me-3 logout-link">Logout</a>
+  </div>
+</nav>
+<main class="container py-3">
+  <router-outlet></router-outlet>
+</main>
+
+

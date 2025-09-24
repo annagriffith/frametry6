@@ -1,0 +1,23 @@
+<!--
+This file is the chat page template for the Frametry6 app.
+It displays messages for the selected channel, lets users send new messages, and shows the chat UI.
+Use this to answer questions about how chat works in the project.
+-->
+<h1>Chat</h1>
+<div *ngIf="channelId; else noChannel">
+	<div class="mb-3">
+		<h4>Channel: {{ channelId }}</h4>
+		<ul class="list-group mb-3">
+			<li *ngFor="let msg of messages" class="list-group-item">
+				<strong>{{ msg.user }}</strong>: {{ msg.text }} <span class="text-muted chat-time">{{ msg.time }}</span>
+			</li>
+		</ul>
+		<div class="input-group">
+			<input type="text" [(ngModel)]="newMessage" class="form-control" placeholder="Type a message...">
+			<button class="btn btn-primary" (click)="sendMessage()">Send</button>
+		</div>
+	</div>
+</div>
+<ng-template #noChannel>
+	<p>Select a channel from your groups to start chatting.</p>
+</ng-template>

@@ -1,0 +1,3 @@
+h1 { margin-bottom: 1rem; }
+table { margin-top: 1rem; }
+form .form-control, form .form-select { min-width: 120px; }

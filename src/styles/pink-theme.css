@@ -1,0 +1,50 @@
+
+body {
+  background: linear-gradient(135deg, #ff69b1 0%, #ffb6e6 40%, #ffe4e1 100%) !important;
+  font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', Arial, sans-serif;
+}
+.card, .bg-light {
+  background: #fff0f6 !important;
+  border: 3px solid #ff69b4 !important;
+  border-radius: 2rem !important;
+  box-shadow: 0 4px 16px #ffb6c1, 0 1px 8px #ff69b4 inset !important;
+}
+.display-4, h1, h5 {
+  color: #ff1493 !important;
+  font-weight: bold;
+  text-shadow: 2px 2px 0 #fff, 0 0 8px #ffb6c1;
+}
+.lead, .text-center, .features {
+  color: #d63384 !important;
+  font-size: 1.3rem !important;
+  text-shadow: 0 0 4px #ffe4e1;
+}
+.btn-primary, .btn-lg {
+  background: linear-gradient(90deg, #ff69b4 60%, #ffb6c1 100%) !important;
+  color: #fff !important;
+  border-radius: 2.5rem !important;
+  font-weight: bold !important;
+  border: none !important;
+  box-shadow: 0 2px 8px #ffb6c1;
+}
+.btn-outline-secondary {
+  background: #fff0f6 !important;
+  color: #ff69b4 !important;
+  border: 2px solid #ff69b4 !important;
+  border-radius: 2.5rem !important;
+  font-weight: bold !important;
+  box-shadow: 0 2px 8px #ffb6c1;
+}
+.btn-outline-success {
+  background: linear-gradient(90deg, #ffe4e1 60%, #ffb6e6 100%) !important;
+  color: #d63384 !important;
+  border: 2px solid #d63384 !important;
+  border-radius: 2.5rem !important;
+  font-weight: bold !important;
+  box-shadow: 0 2px 8px #ffb6c1;
+}
+ul, li {
+  color: #ff69b4 !important;
+  font-size: 1.15rem !important;
+  text-shadow: 0 0 4px #ffe4e1;
+}

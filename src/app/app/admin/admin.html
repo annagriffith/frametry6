@@ -1,0 +1,65 @@
+<!--
+This file is the super admin panel template for the Frametry6 app.
+It lets super admins add new users and view/delete existing users.
+Use this to answer questions about how user management works in the project.
+-->
+<h1>Super Admin Panel</h1>
+<div class="mb-4">
+  <h3>Add User</h3>
+  <form (ngSubmit)="addUser()" class="row g-2">
+    <div class="col-auto">
+      <input type="text" [(ngModel)]="newUser.username" name="username" class="form-control" placeholder="Username" required>
+    </div>
+    <div class="col-auto">
+      <input type="email" [(ngModel)]="newUser.email" name="email" class="form-control" placeholder="Email" required>
+    </div>
+    <div class="col-auto">
+      <label for="roleSelect" class="form-label">Role</label>
+      <select id="roleSelect" [(ngModel)]="newUser.role" name="role" class="form-select">
+        <option value="user">User</option>
+        <option value="groupAdmin">Group Admin</option>
+        <option value="superAdmin">Super Admin</option>
+      </select>
+    </div>
+    <div class="col-auto">
+      <input type="text" [(ngModel)]="newUser.password" name="password" class="form-control" placeholder="Password (default 123)">
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-success">Add User</button>
+    </div>
+  </form>
+  <div *ngIf="error" class="text-danger mt-1">{{ error }}</div>
+</div>
+
+<h3>Users</h3>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.username }}</td>
+      <td>{{ user.email }}</td>
+      <td>
+        <select 
+          [value]="user.role" 
+          (change)="updateUserRole(user.username, $any($event.target).value)"
+          class="form-select form-select-sm"
+          [disabled]="user.username === currentUser.username"
+          title="Change user role">
+          <option value="user">User</option>
+          <option value="groupAdmin">Group Admin</option>
+          <option value="superAdmin">Super Admin</option>
+        </select>
+      </td>
+      <td>
+        <button class="btn btn-danger btn-sm" (click)="deleteUser(user.username)" [disabled]="user.username === currentUser.username">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

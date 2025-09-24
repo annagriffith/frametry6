@@ -1,0 +1,62 @@
+<h1>Group Admin Panel</h1>
+<div class="mb-4">
+  <h3>Create Group</h3>
+  <form (ngSubmit)="createGroup()" class="row g-2">
+    <div class="col-auto">
+      <input type="text" [(ngModel)]="newGroupName" name="groupName" class="form-control" placeholder="Group name" required>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-success">Create Group</button>
+    </div>
+  </form>
+</div>
+
+<div class="mb-4">
+  <h3>Groups</h3>
+  <ul>
+    <li *ngFor="let group of groups">
+      <strong>{{ group.name }}</strong>
+      <button class="btn btn-danger btn-sm ms-2" (click)="deleteGroup(group.id)">Delete Group</button>
+      <button class="btn btn-primary btn-sm ms-2" (click)="selectGroup(group.id)">Manage</button>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="selectedGroupId">
+  <h3>Channels</h3>
+  <form (ngSubmit)="createChannel()" class="row g-2 mb-2">
+    <div class="col-auto">
+      <input type="text" [(ngModel)]="newChannelName" name="channelName" class="form-control" placeholder="Channel name" required>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-success">Create Channel</button>
+    </div>
+  </form>
+  <ul>
+    <li *ngFor="let channel of channels">
+      {{ channel.name }}
+      <button class="btn btn-danger btn-sm ms-2" (click)="deleteChannel(channel.id)">Delete Channel</button>
+    </li>
+  </ul>
+
+  <h3>Members</h3>
+  <form (ngSubmit)="addMember()" class="row g-2 mb-2">
+    <div class="col-auto">
+      <input type="text" [(ngModel)]="memberToAdd" name="memberToAdd" class="form-control" placeholder="Username to add" required>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-success">Add Member</button>
+    </div>
+  </form>
+  <ul>
+    <li *ngFor="let group of groups" *ngIf="group.id === selectedGroupId">
+      <ul>
+        <li *ngFor="let member of group.memberIds">
+          {{ member }}
+          <button class="btn btn-danger btn-sm ms-2" (click)="removeMember(member)">Remove</button>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<div *ngIf="error" class="text-danger mt-2">{{ error }}</div>
